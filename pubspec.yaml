@@ -30,7 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # A Flutter plugin to access and manage the device's native contacts.
-  #  flutter_contact: ^0.6.1
+#  flutter_contact: ^0.7.5-0
 
   # Permission Handler
   permission_handler: ^8.0.1
@@ -43,15 +43,15 @@ dev_dependencies:
     sdk: flutter
 
   #Launcher icon generator
-  flutter_launcher_icons: "^0.8.0"
+#  flutter_launcher_icons: "^0.8.0"
 
   #App name change
   flutter_launcher_name: "^0.0.1"
 
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/launcher.png"
+#flutter_icons:
+#  android: true
+#  ios: true
+#  image_path: "assets/launcher.png"
 
 flutter_launcher_name:
   name: "Flutter Contact"
