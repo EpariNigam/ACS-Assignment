@@ -29,6 +29,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  # A Flutter plugin to access and manage the device's native contacts.
+  #  flutter_contact: ^0.6.1
+
+  # Permission Handler
+  permission_handler: ^8.0.1
+
+  # Contacts
+  contacts_service: ^0.3.10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
