@@ -9,3 +9,4 @@ const String ALLOW_PERMISSION_SETTING =
 const SETTINGS = 'Settings';
 const CANCEL = 'Cancel';
 const FETCHING_ = 'Fetching...';
+const CHECKING_PERMISSION = 'Checking Permission';

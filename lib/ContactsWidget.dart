@@ -1,12 +1,12 @@
-import 'package:acs_assignment/AppUtils.dart';
 import 'package:acs_assignment/ContactItemWidget.dart';
+import 'package:acs_assignment/util/AppUtils.dart';
 import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'Constants.dart' as Constants;
+import 'util/Constants.dart' as Constants;
 
 class ContactsWidget extends StatefulWidget {
   ContactsWidget({Key key, this.title}) : super(key: key);
@@ -46,7 +46,7 @@ class ContactsState extends State<ContactsWidget> {
         ],
       ),
       body: (_status == null)
-          ? Center(child: Text('Checking Permission'))
+          ? Center(child: Text(Constants.CHECKING_PERMISSION))
           : (_status == PermissionStatus.granted)
               ? (_contactsList != null
                   //Build a list view of all contacts, displaying their avatar and

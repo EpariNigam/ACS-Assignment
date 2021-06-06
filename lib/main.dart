@@ -1,7 +1,7 @@
 import 'package:acs_assignment/ContactsWidget.dart';
 import 'package:flutter/material.dart';
 
-import 'Constants.dart' as Constants;
+import 'util/Constants.dart' as Constants;
 
 void main() {
   runApp(MyApp());
