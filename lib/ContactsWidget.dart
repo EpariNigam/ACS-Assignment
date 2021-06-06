@@ -146,8 +146,9 @@ class ContactsState extends State<ContactsWidget> {
     // are now just retrieving it
     final Iterable<Contact> contacts = await ContactsService.getContacts();
     _contactsList = contacts.toList();
+    _contactsList.removeWhere((element) => element.displayName == null);
     _contactsList.sort((a, b) =>
-        a.displayName?.toLowerCase()?.compareTo(b.displayName?.toLowerCase()));
+        a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()));
     _contactsList.forEach((element) {
       _namesList.add(element.displayName.toUpperCase());
     });
