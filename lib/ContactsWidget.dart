@@ -1,5 +1,6 @@
 import 'package:acs_assignment/AppUtils.dart';
 import 'package:acs_assignment/ContactItemWidget.dart';
+import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +22,8 @@ class ContactsWidget extends StatefulWidget {
 class ContactsState extends State<ContactsWidget> {
   final String title;
   PermissionStatus _status;
-  Iterable<Contact> _contacts;
+  List<Contact> _contactsList;
+  List<String> _namesList = [];
 
   ContactsState(this.title);
 
@@ -34,19 +36,31 @@ class ContactsState extends State<ContactsWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: Text(title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.person_add, color: Colors.white),
+            onPressed: () {},
+          )
+        ],
+      ),
       body: (_status == null)
           ? Center(child: Text('Checking Permission'))
           : (_status == PermissionStatus.granted)
-              ? (_contacts != null
+              ? (_contactsList != null
                   //Build a list view of all contacts, displaying their avatar and
                   // display name
-                  ? ListView.builder(
-                      itemCount: _contacts?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        Contact contact = _contacts?.elementAt(index);
-                        return ContactItemWidget(contact);
+                  ? AlphabetListScrollView(
+                      strList: _namesList,
+                      indexedHeight: (i) {
+                        return 80;
                       },
+                      showPreview: true,
+                      itemBuilder: (context, index) {
+                        return ContactItemWidget(_contactsList[index]);
+                      },
+                      keyboardUsage: true,
                     )
                   : Center(
                       child: Column(
@@ -131,8 +145,12 @@ class ContactsState extends State<ContactsWidget> {
     //We already have permissions for contact when we get to this page, so we
     // are now just retrieving it
     final Iterable<Contact> contacts = await ContactsService.getContacts();
-    setState(() {
-      _contacts = contacts;
+    _contactsList = contacts.toList();
+    _contactsList.sort((a, b) =>
+        a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()));
+    _contactsList.forEach((element) {
+      _namesList.add(element.displayName.toUpperCase());
     });
+    setState(() {});
   }
 }

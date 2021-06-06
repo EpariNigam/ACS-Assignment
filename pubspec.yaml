@@ -38,6 +38,9 @@ dependencies:
   # Contacts
   contacts_service: ^0.3.10
 
+  #Fast scroller
+  alphabet_list_scroll_view: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
