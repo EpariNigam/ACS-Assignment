@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+//Common Utils
 class AppUtils {
+  //Show dialog with 2 buttons
   static showDialogCommon(
       BuildContext context,
       String title,
@@ -30,6 +32,7 @@ class AppUtils {
             onWillPop: () async => false));
   }
 
+  // Open app settings and exit the app
   static openSettingsAndExit() {
     openAppSettings();
     SystemNavigator.pop();

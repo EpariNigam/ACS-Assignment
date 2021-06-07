@@ -1,3 +1,4 @@
+// String constants
 const String CONTACTS = 'Contacts';
 const String GRANT_PERMISSION = 'Grant Permission';
 const String ALLOW_PERMISSION_CONTENT =

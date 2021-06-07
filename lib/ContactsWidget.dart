@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'util/Constants.dart' as Constants;
 
+// Contacts Screen
 class ContactsWidget extends StatefulWidget {
   ContactsWidget({Key key, this.title}) : super(key: key);
 
@@ -49,8 +50,7 @@ class ContactsState extends State<ContactsWidget> {
           ? Center(child: Text(Constants.CHECKING_PERMISSION))
           : (_status == PermissionStatus.granted)
               ? (_contactsList != null
-                  //Build a list view of all contacts, displaying their avatar and
-                  // display name
+                  // Build a list view of all contacts, displaying their avatar and name
                   ? AlphabetListScrollView(
                       strList: _namesList,
                       indexedHeight: (i) {
@@ -81,6 +81,7 @@ class ContactsState extends State<ContactsWidget> {
     );
   }
 
+  // Asks permission and displays dialogs accordingly
   permission() async {
     _status = await requestPermission();
     print(_status);
@@ -106,6 +107,7 @@ class ContactsState extends State<ContactsWidget> {
     }
   }
 
+  // Show rational dialog asking user to allow permission
   void showRationalDialog() {
     AppUtils.showDialogCommon(
         context,
@@ -119,6 +121,7 @@ class ContactsState extends State<ContactsWidget> {
     });
   }
 
+  // Show dialog to open settings
   void showSettingsDialog() {
     AppUtils.showDialogCommon(
         context,
@@ -132,18 +135,19 @@ class ContactsState extends State<ContactsWidget> {
     });
   }
 
+  // Request contacts permission
   Future<PermissionStatus> requestPermission() async {
     return await Permission.contacts.request();
   }
 
+  // Dismiss the dialog and again ask permission
   askPermissionFromDialog() {
     Navigator.pop(context);
     permission();
   }
 
+  // Retrieve contacts and sort them also prepare the names list for fast scroller
   Future<void> getContacts() async {
-    //We already have permissions for contact when we get to this page, so we
-    // are now just retrieving it
     final Iterable<Contact> contacts = await ContactsService.getContacts();
     _contactsList = contacts.toList();
     _contactsList.removeWhere((element) => element.displayName == null);
